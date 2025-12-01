@@ -1,67 +1,65 @@
-// src/context/AuthContext.jsx
 import { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
+const API_URL = "http://localhost:3000/api";
+
 export function AuthProvider({ children }) {
-  // Текущ потребител, взет от localStorage (симулация)
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
   );
 
-  // Симулиран login
   const login = async (email, password) => {
-    // Тук няма fetch — просто симулираме успешно логване
-    const simulatedUser = { username: "TestUser", email };
-    localStorage.setItem("token", "fake-jwt-token");
-    localStorage.setItem("user", JSON.stringify(simulatedUser));
-    setUser(simulatedUser);
-    alert("Успешен вход!");
+    try {
+      const res = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Login failed");
+      
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
-  // Симулирана регистрация
   const register = async (username, email, password) => {
-    // Тук няма fetch — просто симулираме регистрация
-    alert(`Потребител ${username} регистриран успешно!`);
+    try {
+      const res = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: {"Content-Type" : "application/json" },
+        body: JSON.stringify({ username, email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Register failed");
+      alert("Registered successfully: " + username);
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
-  // Logout
   const logout = () => {
-    localStorage.removeItem("token");
     localStorage.removeItem("user");
     setUser(null);
-    alert("Излязохте успешно!");
   };
 
-  // Симулиран authFetch
   const authFetch = async (url, options = {}) => {
-    // В реалния проект тук ще се извършва fetch към бекенда
-    // За сега просто връща примерни данни
-    console.log("authFetch called:", url, options);
+    try {
+      const token = user ?.token;
+      const headers = { "Content-Type": "aplication/json", ...API_URL(options.headers || {}) };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
 
-    // Пример за симулирана категория и теми
-    if (url.startsWith("/categories/1")) {
-      return {
-        name: "Общи теми",
-        threads: [
-          { _id: "101", title: "Първа тема" },
-          { _id: "102", title: "Втора тема" },
-        ],
-      };
+      const res = await fetch(`${API_URL}${url}`, { ...options, headers });
+      if (!res.ok) throw new Error("Request failed");
+      return await res.json();
+    } catch (err) {
+      Console.error(err);
+      throw err;
     }
-
-    if (url.startsWith("/categories/2")) {
-      return {
-        name: "Технологии",
-        threads: [
-          { _id: "201", title: "React въпроси" },
-          { _id: "202", title: "Node.js дискусии" },
-        ],
-      };
-    }
-
-    // Симулиране на response за други заявки
-    return { message: "Simulated response" };
   };
 
   return (

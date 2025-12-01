@@ -10,21 +10,22 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="nav-left">
         <Link to="/" className="nav-logo">MyForum</Link>
-        <Link to="/" className="nav-link">Home</Link>
-        {user && <Link to="/category/1" className="nav-link">Категории</Link>}
+
+        <Link to="/category/1">Общи теми</Link>
+        <Link to="/category/2">Технологии</Link>
       </div>
+      
       <div className="nav-right">
-        {!user && (
+        {!user ? (
           <>
-            <Link to="/login" className="nav-link">Login</Link>
-            <Link to="/register" className="nav-link">Register</Link>
+          <Link to="/login">Вход</Link>
+          <Link to="/register">Регистрация</Link>
           </>
-        )}
-        {user && (
+        ) : (
           <>
-            <Link to="/profile" className="nav-link">Profile</Link>
-            <button className="nav-logout" onClick={logout}>Logout</button>
-          </>
+          <span className="welcome">Здравей, {user.username}</span>
+          <Link to="/profile">Профил</Link>
+          <button className="logout-btn" onClick={logout}>Изход</button></>
         )}
       </div>
     </nav>
