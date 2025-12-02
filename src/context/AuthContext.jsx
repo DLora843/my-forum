@@ -16,10 +16,12 @@ export function AuthProvider({ children }) {
       });
 
       const data = await res.json();
+
       if (!res.ok) throw new Error(data.message || "Login failed");
 
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
+
       return data;
     } catch (err) {
       console.error(err);
@@ -36,13 +38,15 @@ export function AuthProvider({ children }) {
       });
 
       const data = await res.json();
+
       if (!res.ok) throw new Error(data.message || "Registration failed");
 
       console.log("Registered:", data);
       return data;
     } catch (err) {
-      console.error(err);
+      console.error("Register error:", err);
       alert(err.message);
+      throw err;
     }
   };
 
@@ -53,7 +57,7 @@ export function AuthProvider({ children }) {
 
   const authFetch = async (url, options = {}) => {
     try {
-      const headers = options.headers || {};
+      const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
       if (user?.token) headers["Authorization"] = `Bearer ${user.token}`;
 
       const res = await fetch(`http://localhost:3000/api${url}`, {
@@ -62,11 +66,13 @@ export function AuthProvider({ children }) {
       });
 
       const data = await res.json();
+
       if (!res.ok) throw new Error(data.message || "Request failed");
+
       return data;
     } catch (err) {
-      console.error(err);
-      return { message: err.message || "Error fetching data" };
+      console.error("AuthFetch error:", err);
+      throw err;
     }
   };
 

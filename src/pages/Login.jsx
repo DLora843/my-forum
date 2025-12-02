@@ -4,19 +4,19 @@ import { AuthContext } from "../context/AuthContext";
 import "../pages/Login.css";
 
 export default function Login() {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const { login } = useContext(AuthContext);
-    const navigate = useNavigate();
-
+  
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await login(email, password);
-        navigate("/");
+        const user = await login(email, password);
+        if (user) navigate("/");
     };
 
   return (
-    <div className="login-container">
+    <div>
       <h1>Вход</h1>
       <form onSubmit={handleSubmit}>
         <input 
