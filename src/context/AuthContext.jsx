@@ -2,8 +2,6 @@ import { createContext, useState } from "react";
 
 export const AuthContext = createContext();
 
-const API_URL = "http://localhost:3000/api";
-
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("user")) || null
@@ -11,7 +9,7 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch(`${API_URL}/auth/login`, {
+      const res = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -19,25 +17,31 @@ export function AuthProvider({ children }) {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
-      
-      localStorage.setItem("user", JSON.stringify(data.user));
-      setUser(data.user);
+
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
+      return data;
     } catch (err) {
+      console.error(err);
       alert(err.message);
     }
   };
 
   const register = async (username, email, password) => {
     try {
-      const res = await fetch(`${API_URL}/auth/register`, {
+      const res = await fetch("http://localhost:3000/api/auth/register", {
         method: "POST",
         headers: {"Content-Type" : "application/json" },
         body: JSON.stringify({ username, email, password }),
       });
+
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Register failed");
-      alert("Registered successfully: " + username);
+      if (!res.ok) throw new Error(data.message || "Registration failed");
+
+      console.log("Registered:", data);
+      return data;
     } catch (err) {
+      console.error(err);
       alert(err.message);
     }
   };
@@ -49,16 +53,20 @@ export function AuthProvider({ children }) {
 
   const authFetch = async (url, options = {}) => {
     try {
-      const token = user ?.token;
-      const headers = { "Content-Type": "aplication/json", ...API_URL(options.headers || {}) };
-      if (token) headers["Authorization"] = `Bearer ${token}`;
+      const headers = options.headers || {};
+      if (user?.token) headers["Authorization"] = `Bearer ${user.token}`;
 
-      const res = await fetch(`${API_URL}${url}`, { ...options, headers });
-      if (!res.ok) throw new Error("Request failed");
-      return await res.json();
+      const res = await fetch(`http://localhost:3000/api${url}` {
+        ...options,
+        headers: { ...headers, "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Request failed");
+      return data;
     } catch (err) {
-      Console.error(err);
-      throw err;
+      console.error(err);
+      return { message: err.message || "Error fetching data" };
     }
   };
 
