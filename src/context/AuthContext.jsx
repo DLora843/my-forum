@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
       const headers = options.headers || {};
       if (user?.token) headers["Authorization"] = `Bearer ${user.token}`;
 
-      const res = await fetch(`http://localhost:3000/api${url}` {
+      const res = await fetch(`http://localhost:3000/api${url}`, {
         ...options,
         headers: { ...headers, "Content-Type": "application/json" },
       });
