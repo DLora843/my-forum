@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 
 export default function Details() {
-    const { id } = useParams();
+  const { id } = useParams();
 
   return (
-    <div>
-       <h1>Details Page</h1>
-       <p>Showing details from item: {id}</p>
+    <div style={{ padding: "20px" }}>
+      <h1>Детайли за тема</h1>
+      <p>ID на темата: {id}</p>
     </div>
-  );
+  )
 }

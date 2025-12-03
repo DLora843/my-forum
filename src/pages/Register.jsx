@@ -3,21 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export default function Register() {
-  const { register } = useContext(AuthContext);
-  const navigate = useNavigate();
-    const [username,setUsername] = useState("");
-    const [email,setEmail] = useState("");
-    const [password,setPassword] = useState("");
-    
-    const handleSubmit = async (e) => {
+   const [username,setUsername] = useState("");
+   const [email,setEmail] = useState("");
+   const [password,setPassword] = useState("");
+   const { register } = useContext(AuthContext);
+   const navigate = useNavigate();
+
+   const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = await register(username, email, password);
-        if (user) navigate("/login");
+
+        const result = await register(username, email, password);
+        if (result) navigate("/login");
     };
 
   return (
-    <div>
+    <div className="login-container">
       <h1>Регистрация</h1>
+
       <form onSubmit={handleSubmit}>
         <input 
         type="text" 
@@ -29,7 +31,7 @@ export default function Register() {
 
         <input 
         type="email" 
-        placeholder="Email" 
+        placeholder="Имейл" 
         value={email} 
         onChange={(e) => setEmail(e.target.value)} 
         required

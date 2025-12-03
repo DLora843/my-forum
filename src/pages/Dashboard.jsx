@@ -1,9 +1,8 @@
-import React from 'react';
 export default function Dashboard() {
-    return(
-        <div>
-            <h1>Dashboard Page</h1>
-            <p>Welcome to your dashboard!</p>
+    return (
+        <div style={{ padding: "20px" }}>
+            <h1>Dashboard</h1>
+            <p>Добре дошли във форума</p>
         </div>
-    );
+    )
 }
