@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
       console.log("Registered:", data);
       return data;
     } catch (err) {
-      console.error("Register error:", err);
+      /* console.error("Register error:", err);*/
       alert(err.message);
       throw err;
     }
@@ -60,7 +60,7 @@ export function AuthProvider({ children }) {
       const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
       if (user?.token) headers["Authorization"] = `Bearer ${user.token}`;
 
-      const res = await fetch(`http://localhost:3000/api${url}`, {
+      const res = await fetch(`http://localhost:3000/api`, {
         ...options,
         headers: { ...headers, "Content-Type": "application/json" },
       });

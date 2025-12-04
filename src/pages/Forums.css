@@ -1,0 +1,117 @@
+.forums-page {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: auto;
+    font-family: "Poppins", sans-serif;
+}
+
+.forums-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.forums-header h1{
+    font-size: 2.4rem;
+    color: #222;
+    margin-bottom: 0.7rem;
+    font-weight: 700;
+}
+
+.forums-header p{
+    color: #555;
+    font-size: 1.1rem;
+}
+
+.category-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 1.8rem;
+    padding: 1rem 0;
+}
+
+.categoy-card {
+    background: linear-gradient(135deg, #ffffff, #f6f6f6);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.category-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    border-color: #bbb;
+}
+
+.category-card img.category-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.category-card img.category-img:hover {
+  transform: scale(1.03);
+  filter: brightness(90%);
+}
+
+.categoy-card h3 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+}
+
+.categoy-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.btn-small {
+    display: inline-block;
+    padding: 0.7rem 1.3rem;
+    background-color: #2d2d2d;
+    color: #fff;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-small:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .forums-header h1 {
+    font-size: 2rem;
+  }
+
+  .category-card {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .forums-page {
+    padding: 2rem 1rem;
+  }
+
+  .category-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .btn-small {
+    width: 100%;
+    text-align: center;
+  }
+}

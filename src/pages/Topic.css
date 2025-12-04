@@ -1,0 +1,57 @@
+.topic-page {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.topic-header {
+  margin-bottom: 2rem;
+}
+
+.topic-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.topic-header p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.back-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background-color: #2d2d2d;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #444;
+}
+
+.replies-list {
+  margin-top: 1.5rem;
+}
+
+.reply-card {
+  background: #f8f8f8;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+}
+
+.reply-card strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #222;
+}
+
+.reply-card p {
+  margin: 0;
+  color: #555;
+}

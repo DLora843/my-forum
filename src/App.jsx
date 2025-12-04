@@ -5,8 +5,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Details from "./pages/Details";
 import Themes from "./pages/Themes";
+import Forums from "./pages/Forums";
+import ForumCategory from "./pages/ForumCategory";
+import Topic from "./pages/Topic";
 
 
 export default function App() {
@@ -23,8 +25,10 @@ export default function App() {
 
         { /* Pages */}
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/details/:id" element={<Details/>} />
         <Route path="/themes" element={<Themes />} />
+        <Route path="/forums" element={<Forums />} />
+        <Route path="/forums/:id" element={<ForumCategory />} />
+        <Route path="/topic/:topicId" element={<Topic />} />
       </Routes>
       </BrowserRouter>
     </AuthProvider>
