@@ -28,7 +28,7 @@ export default function ForumCategory() {
     3: {
       name: "Databases",
       description: "SQL, NoSQL, MongoDB",
-      image: "/images/categories/databases.jpg",
+      image: "/28393.jpg",
       topics: [
         { id: 6, title: "Mongo Collection vs Table", replies: 3 },
         { id: 7, title: "SQL Indexes explained", replies: 16 },

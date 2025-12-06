@@ -14,7 +14,6 @@ export default function Navbar() {
         <NavLink to="/" className="nav-link">Начало</NavLink>
         <NavLink to="/themes" className="nav-link">Теми</NavLink>
         <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
-        <NavLink to="/details" className="nav-link">Details</NavLink>
         <NavLink to="/forums" className="nav-link">Forums</NavLink>
       </div>
 

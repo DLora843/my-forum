@@ -1,0 +1,90 @@
+.details-page {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f7ff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.details-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.details-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #2c2c2c;
+}
+
+.details-header .topic-description {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.details-content {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.details-content p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.replies-section {
+  margin-top: 1.5rem;
+}
+
+.reply-card {
+  border: 1px solid #ddd;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: transform 0.2s ease;
+}
+
+.reply-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.reply-card strong {
+  display: block;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
+}
+
+.back-btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #4c57ff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: #6a74ff;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .details-page {
+    padding: 1rem;
+  }
+
+  .details-header h1 {
+    font-size: 1.6rem;
+  }
+}

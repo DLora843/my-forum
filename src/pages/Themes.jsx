@@ -28,6 +28,7 @@ export default function Themes() {
             <Link to={`/details/${t.id}`}>Виж детайли</Link>
           </li>
         ))}
+        <Link to="/">Начало</Link>
       </ul>
     </div>
   );
