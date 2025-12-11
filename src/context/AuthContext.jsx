@@ -9,7 +9,7 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      const res = await fetch("http://localhost:3000/api/auth/login", {
+      const res = await fetch("http://localhost:3000/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
 
   const register = async (username, email, password) => {
     try {
-      const res = await fetch("http://localhost:3000/api/auth/register", {
+      const res = await fetch("http://localhost:3000/api/register", {
         method: "POST",
         headers: {"Content-Type" : "application/json" },
         body: JSON.stringify({ username, email, password }),
@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
       console.log("Registered:", data);
       return data;
     } catch (err) {
-      /* console.error("Register error:", err);*/
+      console.error("Register error:", err);
       alert(err.message);
       throw err;
     }
@@ -57,12 +57,19 @@ export function AuthProvider({ children }) {
 
   const authFetch = async (url, options = {}) => {
     try {
-      const headers = { "Content-Type": "application/json", ...(options.headers || {}) };
-      if (user?.token) headers["Authorization"] = `Bearer ${user.token}`;
+      const headers = { ...(options.headers || {}) };
 
-      const res = await fetch(`http://localhost:3000/api`, {
+      if (!headers["Content-Type"]){
+        headers["Content-Type"] = "application/json";
+      }
+      
+      if (user?.token) {
+        headers["Authorization"] = `Bearer ${user.token}`;
+      }
+    
+      const res = await fetch(`http://localhost:3000/api${url}`, {
         ...options,
-        headers: { ...headers, "Content-Type": "application/json" },
+        headers,
       });
 
       const data = await res.json();

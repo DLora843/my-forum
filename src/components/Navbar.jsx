@@ -11,23 +11,36 @@ export default function Navbar() {
       <div className="nav-left">
         <Link to="/" className="logo">MyForum</Link>
 
-        <NavLink to="/" className="nav-link">Начало</NavLink>
-        <NavLink to="/themes" className="nav-link">Теми</NavLink>
-        <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
-        <NavLink to="/forums" className="nav-link">Forums</NavLink>
+        {/* Ако потребителят е логнат — показваме всички страници */}
+        {user ? (
+          <>
+            <NavLink to="/" className="nav-link">Начало</NavLink>
+            <NavLink to="/themes" className="nav-link">Теми</NavLink>
+            <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
+            <NavLink to="/forums" className="nav-link">Forums</NavLink>
+          </>
+        ) : (
+          /* Ако не е логнат — показваме само Начало */
+          <NavLink to="/" className="nav-link">Начало</NavLink>
+        )}
       </div>
 
       <div className="nav-right">
+        {/* Ако потребителят НЕ е логнат */}
         {!user && (
           <>
-          <NavLink to="/login" className="nav-btn">Вход</NavLink>
-          <NavLink to="/register" className="nav-btn">Регистрация</NavLink>
-          <button className="logout-btn" onClick={logout}>Изход</button>
-
+            <NavLink to="/login" className="nav-btn">Вход</NavLink>
+            <NavLink to="/register" className="nav-btn">Регистрация</NavLink>
+            {/* Може да сложиш бутона за изход, но той няма да прави нищо, ако не е логнат */}
+            <button className="nav-btn logout-btn" disabled>Изход</button>
           </>
         )}
+
+        {/* Ако потребителят Е логнат */}
         {user && (
           <>
+            <span className="user-name">Здравей, {user.username || user.email}</span>
+            <button className="nav-btn logout-btn" onClick={logout}>Изход</button>
           </>
         )}
       </div>

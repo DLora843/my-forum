@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -19,18 +22,72 @@ export default function App() {
       <Navbar />
       
       <Routes>
+        {/* Публични */}
         <Route path="/" element={<Home />} />
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route 
+        path="/login" 
+        element={
+        <PublicRoute>
+          <Login />
+          </PublicRoute>
+        }
+      />
+        <Route 
+        path="/register" 
+        element={
+        <PublicRoute>
+          <Register />
+          </PublicRoute>
+        } 
+        />
 
-        { /* Pages */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/themes" element={<Themes />} />
-        <Route path="/forums" element={<Forums />} />
-        <Route path="/forums/:id" element={<ForumCategory />} />
-        <Route path="/topic/:topicId" element={<Topic />} />
-        <Route path="/details/:id" element={<Details />} />
+        {/* Приватни */}
+        <Route 
+        path="/dashboard" 
+        element={
+        <PrivateRoute>
+          <Dashboard />
+        </PrivateRoute>
+        } 
+        />
+        <Route 
+        path="/themes" 
+        element={
+          <PrivateRoute>
+            <Themes />
+          </PrivateRoute>
+        }
+        />
+        <Route path="/forums" 
+        element={
+          <PrivateRoute>
+           <Forums /> 
+          </PrivateRoute>
+        } 
+        />
+        <Route 
+        path="/forums/:id" 
+        element={
+        <PrivateRoute>
+        <ForumCategory />
+        </PrivateRoute>
+        } 
+        />
+        <Route 
+        path="/topic/:topicId" 
+        element={
+        <PrivateRoute>
+        <Topic />
+        </PrivateRoute>
+        } 
+        />
+        <Route 
+        path="/details/:id" 
+        element={<PrivateRoute>
+        <Details />
+          </PrivateRoute>
+        } 
+        />
       </Routes>
       </BrowserRouter>
     </AuthProvider>
