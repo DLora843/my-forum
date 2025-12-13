@@ -31,6 +31,7 @@ export default function Navbar() {
           <>
             <NavLink to="/login" className="nav-btn">Вход</NavLink>
             <NavLink to="/register" className="nav-btn">Регистрация</NavLink>
+            <NavLink to="/blog" className="nav-link">блог</NavLink>
             {/* Може да сложиш бутона за изход, но той няма да прави нищо, ако не е логнат */}
             <button className="nav-btn logout-btn" disabled>Изход</button>
           </>

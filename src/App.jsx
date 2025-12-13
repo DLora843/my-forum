@@ -13,7 +13,8 @@ import Themes from "./pages/Themes";
 import Forums from "./pages/Forums";
 import ForumCategory from "./pages/ForumCategory";
 import Topic from "./pages/Topic";
-
+import Blog from "./pages/Blog";
+import BlogDetails from "./pages/BlogDetails";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Routes>
         {/* Публични */}
         <Route path="/" element={<Home />} />
+
         <Route 
         path="/login" 
         element={
@@ -32,6 +34,7 @@ export default function App() {
           </PublicRoute>
         }
       />
+
         <Route 
         path="/register" 
         element={
@@ -41,6 +44,23 @@ export default function App() {
         } 
         />
 
+        <Route 
+        path="/blog"
+        element={
+          <PublicRoute>
+            <Blog />
+          </PublicRoute>
+        }
+        />
+
+        <Route 
+        path="/blog/:id"
+        element={
+          <PublicRoute>
+            <BlogDetails />
+          </PublicRoute>
+        }
+        />
         {/* Приватни */}
         <Route 
         path="/dashboard" 
@@ -50,6 +70,7 @@ export default function App() {
         </PrivateRoute>
         } 
         />
+
         <Route 
         path="/themes" 
         element={
@@ -58,6 +79,7 @@ export default function App() {
           </PrivateRoute>
         }
         />
+
         <Route path="/forums" 
         element={
           <PrivateRoute>
@@ -65,6 +87,7 @@ export default function App() {
           </PrivateRoute>
         } 
         />
+
         <Route 
         path="/forums/:id" 
         element={
@@ -73,6 +96,7 @@ export default function App() {
         </PrivateRoute>
         } 
         />
+
         <Route 
         path="/topic/:topicId" 
         element={
@@ -81,6 +105,7 @@ export default function App() {
         </PrivateRoute>
         } 
         />
+
         <Route 
         path="/details/:id" 
         element={<PrivateRoute>
