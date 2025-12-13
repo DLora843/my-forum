@@ -3,6 +3,7 @@ require('dotenv').config()
 const dbConnector = require('./config/db');
 // const mongoose = require('mongoose');
 const apiRouter = require('./router');
+const blogRouter = require('./router/blog');
 const cors = require('cors');
 // const config = require('./config/config');
 const { errorHandler } = require('./utils');
@@ -20,6 +21,7 @@ dbConnector()
     }));
 
     app.use('/api', apiRouter);
+    app.use('/api/blog', blogRouter);
 
     app.use(errorHandler);
 
