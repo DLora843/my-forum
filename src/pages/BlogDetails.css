@@ -1,0 +1,35 @@
+.blog-details {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    line-height: 1.8;
+    font-family: Arial, sans-serif;
+}
+
+.blog-details h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.blog-details img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+.blog-details p {
+    margin: 12px 0;
+    font-size: 16px;
+    color: #333;
+    white-space: pre-line;
+}
+
+.blog-details ul {
+    margin: 10px 0 20px 20px;
+}
+
+.blog-details li {
+    margin-bottom: 6px;
+}
