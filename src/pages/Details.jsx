@@ -10,16 +10,19 @@ export default function Details() {
       title: "React Hooks",
       description: "Обсъждане на React Hooks, useState, useEffect и custom hooks.",
       details: "В тази тема ще разгледаме често срещани проблеми при React Hooks, практики за оптимизация и примери за използване в реални проекти.",
+      image: "/react.jpg", 
     },
     2: {
       title: "Node.js",
       description: "Темa за Node.js и backend логика, работа с REST API и JWT.",
       details: "Тук ще обсъдим създаване на сървъри, маршрути, аутентикация и middleware в Node.js.",
+      image: "/images.jpg"
     },
     3: {
       title: "MongoDB",
       description: "База данни и Mongoose, работа с документи и колекции.",
       details: "Обсъждаме CRUD операции, индексиране, оптимизация на заявки и работа с Mongoose модели.",
+      image:"/MongoDB.jpg"
     },
   };
 
@@ -30,6 +33,7 @@ export default function Details() {
   return (
     <div className="details-page">
       <h1>{topic.title}</h1>
+      <img src={topic.image} alt={topic.title} className="tpoic-image" />
       <p>{topic.description}</p>
       <p>{topic.details}</p>
 

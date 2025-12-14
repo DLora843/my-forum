@@ -37,6 +37,13 @@
   color: #444;
 }
 
+.topic-image {
+  width: 300px;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
 .replies-section {
   margin-top: 1.5rem;
 }
