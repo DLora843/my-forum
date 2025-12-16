@@ -21,7 +21,7 @@ dbConnector()
     }));
 
     app.use('/api', apiRouter);
-    app.use('/api/blog', blogRouter);
+    app.use('/api/blogs', blogRouter);
 
     app.use(errorHandler);
 
