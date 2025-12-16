@@ -1,33 +1,28 @@
-# My Forum - React.jsx SPA
+# My Forum – React Project
 
 ## Description
 My Forum is a Single Page Application built with React.
-It allows users to read, create, edit and delete forums posts.
+Guests can browse blog posts and forum topics.
+Registered users can create, edit, and delete content.
 
-## Public Part
-- Home Page
-- Blog / Topics catalog
-- Topic details
-- Login
-- Register
-
-## Private Part
-- Create post
-- Edit post
-- Delete Post
-- user profile
-
-## Tecnologies
+## Technologies
 - React
 - React Router
-- REST API (Node.js + MongoDB)
+- Context API
 - CSS
+- Node.js + MongoDB
 
-## How to run the project
+## Features
+- Public and private sections
+- Authentication (login & register)
+- Blog catalog and details
+- Forum topics and replies
+- Route guards
+- CRUD operations
+
+## Installation
 1. npm install
 2. npm run dev
-3. Start backend server
-
 
 ## Author
 DLora843
