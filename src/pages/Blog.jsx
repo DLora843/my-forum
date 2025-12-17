@@ -34,6 +34,7 @@ export default function Blog() {
       <div className="blog-list">
         {posts.map(post => (
           <div key={post._id || post.id} className="blog-card">
+            <img src={post.image} alt={post.title} />
             <h2>{post.title}</h2>
             <p>{post.description}</p>
 

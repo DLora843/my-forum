@@ -15,6 +15,8 @@ import ForumCategory from "./pages/ForumCategory";
 import Topic from "./pages/Topic";
 import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
+import CreateBlog from "./pages/CreateBlog";
+import EditBlog from "./pages/EditBlog";
 
 export default function App() {
   return (
@@ -113,6 +115,22 @@ export default function App() {
           </PrivateRoute>
         } 
         />
+        < Route
+        path="/blog/create"
+        element={
+          <PrivateRoute>
+            <CreateBlog />
+          </PrivateRoute>
+        }
+      /> 
+      <Route 
+      path="/blog/:id/edit"
+      element={
+        <PrivateRoute>
+          <EditBlog />
+        </PrivateRoute>
+      }
+      />
       </Routes>
       </BrowserRouter>
     </AuthProvider>

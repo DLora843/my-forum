@@ -18,6 +18,7 @@ export default function Navbar() {
             <NavLink to="/themes" className="nav-link">Теми</NavLink>
             <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
             <NavLink to="/forums" className="nav-link">Forums</NavLink>
+            <NavLink to="/blog/create" className="nav-link">Нов Пост</NavLink>
           </>
         ) : (
           /* Ако не е логнат — показваме само Начало */
