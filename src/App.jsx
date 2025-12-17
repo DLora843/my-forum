@@ -17,6 +17,8 @@ import Blog from "./pages/Blog";
 import BlogDetails from "./pages/BlogDetails";
 import CreateBlog from "./pages/CreateBlog";
 import EditBlog from "./pages/EditBlog";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/Not-Found";
 
 export default function App() {
   return (
@@ -129,6 +131,20 @@ export default function App() {
         <PrivateRoute>
           <EditBlog />
         </PrivateRoute>
+      }
+      />
+      <Route
+      path="/profile"
+      element={
+        <PrivateRoute>
+          <Profile />
+        </PrivateRoute>
+      }
+      />
+      <Route
+      path="*"
+      element={
+        <NotFound />
       }
       />
       </Routes>

@@ -1,59 +1,63 @@
 const express = require('express');
 const router = express.Router();
-const Blog = require('../models/Blog'); // Mongoose модел за блог пост
+const Blog = require('../models/Blog');
 
-// Всички публикации
+// GET all blogs
 router.get('/', async (req, res) => {
-    try {
-        const posts = await Blog.find(); // Взимаме всички публикации от базата
-        res.json(posts);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+  try {
+    const blogs = await Blog.find();
+    res.json(blogs);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
-// Получаване на публикация по ID
+// GET blog by id
 router.get('/:id', async (req, res) => {
-    try {
-        const post = await Blog.findById(req.params.id);
-        if (!post) return res.status(404).json({ message: 'Post not found' });
-        res.json(post);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+  try {
+    const blog = await Blog.findById(req.params.id);
+    if (!blog) {
+      return res.status(404).json({ message: 'Blog not found' });
     }
+    res.json(blog);
+  } catch (err) {
+    res.status(400).json({ message: 'Invalid ID' });
+  }
 });
 
-// Създаване на публикация
+// CREATE blog
 router.post('/', async (req, res) => {
-    try {
-        const post = new Blog(req.body);
-        await post.save();
-        res.status(201).json(post);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
+  try {
+    const blog = new Blog(req.body);
+    const savedBlog = await blog.save();
+    res.status(201).json(savedBlog);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
-// Редактиране на публикация
+// UPDATE blog
 router.put('/:id', async (req, res) => {
-    try {
-        const post = await Blog.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        if (!post) return res.status(404).json({ message: 'Post not found' });
-        res.json(post);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
+  try {
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json(updatedBlog);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
-// Изтриване на публикация
+// DELETE blog
 router.delete('/:id', async (req, res) => {
-    try {
-        const post = await Blog.findByIdAndDelete(req.params.id);
-        if (!post) return res.status(404).json({ message: 'Post not found' });
-        res.json({ message: 'Deleted successfully' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+  try {
+    await Blog.findByIdAndDelete(req.params.id);
+    res.json({ message: 'Blog deleted' });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
 });
 
 module.exports = router;
