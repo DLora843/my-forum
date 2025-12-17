@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import "./BlogDetails.css";
 export default function BlogDetails() {
   const { id } = useParams(); // Взимаме id от URL
   const [post, setPost] = useState(null);
@@ -29,10 +29,10 @@ export default function BlogDetails() {
       <p>{post.content}</p>
       <p><b>Автор:</b> {post.author}</p>
       <p><b>Дата:</b> {post.date}</p>
-
-<Link to={`/blog/${post._id}/edit`} className="edit-btn">
+      <Link to={`/blog/${post._id}/edit`} className="edit-btn">
     Редактирай
   </Link>
     </div>
   );
+  
 }
